@@ -50,9 +50,12 @@ public class AuthController {
     public ResponseEntity<?> callback(@RequestParam String code, @RequestParam Optional<String>state, HttpSession session, HttpServletResponse response) throws MissingTokenException, URISyntaxException, IOException {
         String traceId = TraceIdGenerator.writeTrace(this.getClass(),StackWalker.getInstance().walk(frames -> frames.findFirst().map(StackWalker.StackFrame::getMethodName)).orElse(METHOD_NAME_NOT_FOUND));
         AccessToken accessToken = serviceApi.getAccessToken(code);
+
         session.setAttribute(SESSION_ACCESS_TOKEN, accessToken);
+
         TraceIdGenerator.writeDebug("Authorized",this.getClass(),null);
         System.out.println("==========sending session cookie");
+        response.setHeader("Set-Cookie", "key=value; HttpOnly; SameSite=None; secure");
         if (state.isPresent()) {
             response.sendRedirect(state.get());
         }
