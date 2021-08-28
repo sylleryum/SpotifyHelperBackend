@@ -66,7 +66,9 @@ public class TheController {
         String traceId = TraceIdGenerator.writeTrace(this.getClass(), StackWalker.getInstance().walk(frames -> frames.findFirst().map(StackWalker.StackFrame::getMethodName)).orElse(METHOD_NAME_NOT_FOUND));
         AccessToken accessToken = (AccessToken) session.getAttribute(SESSION_ACCESS_TOKEN);
 System.out.println("-------------------------");
-System.out.println(session.getAttributeNames().nextElement());
+if (session.getAttribute("accessToken")!=null){
+    System.out.println(session.getAttribute("accessToken"));
+}
         User user = serviceApi.getUserDetails(accessToken);
         return ResponseEntity.ok(user);
     }
