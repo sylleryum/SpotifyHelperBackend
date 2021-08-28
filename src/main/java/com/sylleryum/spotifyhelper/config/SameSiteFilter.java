@@ -31,7 +31,7 @@ public class SameSiteFilter implements Filter {
         boolean firstHeader = true;
         for (String header : headers) { // there can be multiple Set-Cookie attributes
             if (firstHeader) {
-                System.out.println("-=-=-=-=-=-=-=-=-=-=-=-");
+                System.out.println("-iii-");
                 res.setHeader(HttpHeaders.SET_COOKIE, String.format("%s; %s",  header, "SameSite=None"));
                 LOG.debug(String.format("Same Site Filter First Header %s; %s", header, "SameSite=None; Secure"));
 

@@ -55,7 +55,7 @@ public class AuthController {
 
         TraceIdGenerator.writeDebug("Authorized",this.getClass(),null);
         System.out.println("==========sending session cookie");
-        response.setHeader("Set-Cookie", "key=value; HttpOnly; SameSite=None; secure");
+//        response.setHeader("Set-Cookie", "key=value; HttpOnly; SameSite=None; secure");
         if (state.isPresent()) {
             response.sendRedirect(state.get());
         }
