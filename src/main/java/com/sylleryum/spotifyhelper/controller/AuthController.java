@@ -52,6 +52,7 @@ public class AuthController {
         AccessToken accessToken = serviceApi.getAccessToken(code);
         session.setAttribute(SESSION_ACCESS_TOKEN, accessToken);
         TraceIdGenerator.writeDebug("Authorized",this.getClass(),null);
+        System.out.println("==========sending session cookie");
         if (state.isPresent()) {
             response.sendRedirect(state.get());
         }
