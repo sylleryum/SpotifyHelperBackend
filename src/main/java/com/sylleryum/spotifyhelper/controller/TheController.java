@@ -65,7 +65,7 @@ public class TheController {
     public ResponseEntity<?> getUser(HttpSession session) throws MissingTokenException, URISyntaxException, JsonProcessingException {
         String traceId = TraceIdGenerator.writeTrace(this.getClass(), StackWalker.getInstance().walk(frames -> frames.findFirst().map(StackWalker.StackFrame::getMethodName)).orElse(METHOD_NAME_NOT_FOUND));
         AccessToken accessToken = (AccessToken) session.getAttribute(SESSION_ACCESS_TOKEN);
-System.out.println("--------------------");
+System.out.println("-------------------------");
 System.out.println(session.getAttributeNames().nextElement());
         User user = serviceApi.getUserDetails(accessToken);
         return ResponseEntity.ok(user);
