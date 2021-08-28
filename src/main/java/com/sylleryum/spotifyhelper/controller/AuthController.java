@@ -51,7 +51,7 @@ public class AuthController {
         String traceId = TraceIdGenerator.writeTrace(this.getClass(),StackWalker.getInstance().walk(frames -> frames.findFirst().map(StackWalker.StackFrame::getMethodName)).orElse(METHOD_NAME_NOT_FOUND));
         AccessToken accessToken = serviceApi.getAccessToken(code);
         session.setAttribute(SESSION_ACCESS_TOKEN, accessToken);
-
+        TraceIdGenerator.writeDebug("Authorized",this.getClass(),null);
         if (state.isPresent()) {
             response.sendRedirect(state.get());
         }
