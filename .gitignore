@@ -1,4 +1,4 @@
-!**/src/main/resources/tests.properties
+!**/src/main/**/resources/tests.properties
 
 HELP.md
 target/
