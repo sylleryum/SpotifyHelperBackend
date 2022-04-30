@@ -5,8 +5,10 @@ import com.sylleryum.spotifyhelper.config.SpotifyCredentials;
 import com.sylleryum.spotifyhelper.model.AccessToken;
 import com.sylleryum.spotifyhelper.model.jsonResponses.UserPlaylists;
 import com.sylleryum.spotifyhelper.service.ServiceApi;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.*;
@@ -24,8 +26,11 @@ class SpotifyhelperApplicationTests {
     @Autowired
     ServiceApi serviceApi;
 
+    @Value("${spotify.refresh.token}")
+    String refreshToken;
+
     /*unavailable
-    0OYGSvSFCW5NZEvn2svFLS*/
+        0OYGSvSFCW5NZEvn2svFLS*/
     /*fav
     5Bo3G9pauPpd0oSPPTVufY*/
     /*
@@ -33,7 +38,7 @@ class SpotifyhelperApplicationTests {
     */
     @Test
     void contextLoads() throws Exception {
-        AccessToken accessToken = serviceApi.setRefresh("AQAIjS_tX0ug68qifQ2cuXCBxDmVsuq-AqajNV8zi7MIp63koCvbV0yu2HFtcy56GRzCFk2FXHSCCBYo2PQy2E1MTupOb_KZKht1yUh92oL3HTzgo7nrtYJCwbzHYOutwZY");
+        AccessToken accessToken = serviceApi.setRefresh(refreshToken);
         List<UserPlaylists> playlists = serviceApi.getPlaylists(accessToken);
         System.out.println();
 
