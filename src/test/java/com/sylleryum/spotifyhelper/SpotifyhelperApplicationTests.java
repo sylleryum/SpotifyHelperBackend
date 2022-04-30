@@ -9,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
@@ -37,21 +37,6 @@ class SpotifyhelperApplicationTests {
         List<UserPlaylists> playlists = serviceApi.getPlaylists(accessToken);
         System.out.println();
 
-    }
-
-    @Test
-    void test() {
-        List<Integer> li = new ArrayList<>();
-        List<Integer> li2 = new ArrayList<>();
-        li.add(1);
-        li.add(2);
-        li.add(3);
-        li.add(4);
-        li.add(5);
-
-        li2 = li.subList(0, 2);
-        li = li.subList(2, li.size());
-        System.out.println();
     }
 
 }
