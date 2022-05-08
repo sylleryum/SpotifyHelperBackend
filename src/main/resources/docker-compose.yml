@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  backend:
+    image: backend
+    ports:
+      - "8080:8080"
+    networks:
+      - common
+
+  frontend:
+    image: spotifyhelper
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+    networks:
+      - common
+
+networks:
+  common:
+    driver: bridge

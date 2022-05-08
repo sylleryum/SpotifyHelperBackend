@@ -28,7 +28,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.net.URISyntaxException;
-import java.text.Collator;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -36,11 +35,7 @@ import static com.sylleryum.spotifyhelper.helper.TraceIdGenerator.METHOD_NAME_NO
 import static com.sylleryum.spotifyhelper.helper.TraceIdGenerator.writeDebug;
 
 @Service
-public class ServiceApiImpl implements ServiceApi {
-
-//    private AccessToken accessToken;
-//    private User user;
-
+public class ServiceApiImpl implements SpotifyServiceApi {
     //TODO remove
     private RestTemplate template = new RestTemplate();
 
@@ -223,7 +218,7 @@ public class ServiceApiImpl implements ServiceApi {
      * @throws MissingTokenException
      * @throws URISyntaxException
      */
-    private AccessToken tokenCall(HttpEntity<MultiValueMap<String, String>> requestEntityCall, AccessToken accessToken) throws RestClientResponseException, MissingTokenException, URISyntaxException {
+    private AccessToken tokenCall(HttpEntity<MultiValueMap<String, String>> requestEntityCall, AccessToken accessToken) throws RestClientResponseException{
 
         AccessToken responseToken = template.postForObject(endpoints.getAccess, requestEntityCall, AccessToken.class);
 
